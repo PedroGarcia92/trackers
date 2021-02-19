@@ -25,7 +25,7 @@ class odvctrldb {
                  // abrirVenta(url)
                 //}, 2000);
               //  this.limpiarFormulario()
-              window.href.reload();
+              window.location.reload();
                  break;
                  case false:
                  this.alertPopup("error",data["message"]);
