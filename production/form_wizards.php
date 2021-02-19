@@ -377,7 +377,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 ">
                               <input type="text" id="Estimacion" required="required" class="form-control"
-                               placeholder="auto increment y unico" name="Estimacion">
+                               placeholder="" name="Estimacion">
                             </div>
                           </div>
                           <div class="form-group row">
