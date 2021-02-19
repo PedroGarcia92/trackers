@@ -4519,11 +4519,11 @@ fieldset {
   z-index: 5; }
 
 .wizard_horizontal ul.wizard_steps li a.selected:before, .step_no {
-  background: #091F2C;
+  background: #34495E;
   color: #fff; }
 
 .wizard_horizontal ul.wizard_steps li a.done:before, .wizard_horizontal ul.wizard_steps li a.done .step_no {
-  background: #d24c2b;
+  background: #1ABB9C;
   color: #fff; }
 
 .wizard_horizontal ul.wizard_steps li:first-child a:before {

@@ -15,10 +15,25 @@
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Select2 -->
+     <link rel="stylesheet" href="../vendors/select2/dist/css/select2.min.css">
+     <!-- <link rel="stylesheet" href="../vendors/select2/dist/-bootstrap4-theme/select2-bootstrap4.min.css"> -->
+     <!-- datetimepicker -->
+     <!-- bootstrap-datetimepicker -->
+     <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+     <!-- datetimepicker -->
 
     <!-- Custom Theme Style -->
-      <!--<link href="../build/css/custom.css" rel="stylesheet">-->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+      <link href="../build/css/custom.css" rel="stylesheet">
+    <!-- <link href="../build/css/custom.min.css" rel="stylesheet"> -->
+    <!-- toastr.css agregado -->
+    <link href="../build/toastrBuild/toastr.css" rel="stylesheet" type="text/css"/>
+    <!-- uii js -->
+    <script src="js/odvctrldb.class.js?<?php echo time();?>"></script>
+    <script src="js/odvctrl.class.js?<?php echo time();?>"></script>
+    <script type="text/javascript">
+    const Obcon= new odvctrl;
+    </script>
   </head>
 
   <body class="nav-md">
@@ -268,28 +283,26 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Wizards</h3>
+                <h3>Form</h3>
               </div>
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5  form-group row pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <input type="text" class="form-control" placeholder="Buscar...">
                     <span class="input-group-btn">
-                              <button class="btn btn-secondary" type="button">Go1!</button>
+                              <button class="btn btn-secondary" type="button">Go</button>
                           </span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="clearfix"></div>
-
             <div class="row">
-
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Wizards <small>Sessions</small></h2>
+                    <!-- <h2>Form Wizards <small>Sessions</small></h2> -->
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -303,7 +316,11 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      <li>
+                        <!--
+                        //COMENTADO
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                       -->
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -312,7 +329,7 @@
 
 
                     <!-- Smart Wizard -->
-                    <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
+                    <!-- <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p> -->
                     <div id="wizard" class="form_wizard wizard_horizontal">
                       <ul class="wizard_steps">
                         <li>
@@ -353,56 +370,98 @@
                         </li>
                       </ul>
                       <div id="step-1">
-                        <form class="form-horizontal form-label-left">
+                        <form class="form-horizontal form-label-left" id="FormPlanner">
 
                           <div class="form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Estimacion <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="first-name" required="required" class="form-control  " placeholder="auto increment y unico">
+                              <input type="text" id="Estimacion" required="required" class="form-control"
+                               placeholder="auto increment y unico" name="Estimacion">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Folio <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="last-name" name="last-name" required="required" class="form-control " placeholder="texto">
+                              <input type="text" id="Folio" name="Folio" required="required" class="form-control " placeholder="">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Cliente</label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="dropdown">
+                              <select class="form-control select2" style="width: 100%;" name="Cliente" id="Cliente">
+                                <?php
+                                for ($c=1; $c <= 5 ; $c++) {
+                                  if ($c==1) {
+                                    $sel="selected";
+                                    $data='';
+                                  }else{
+                                    $sel="";
+                                    $data="Cliente ".$c;
+                                  }
+                                    echo "<option ".$sel." value='".$data."'>".$data."</option>";
+                                }
+                                 ?>
+                              </select>
                             </div>
+                            <!-- Select2 -->
                           </div>
                           <div class="form-group row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Proveedor</label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="dropdown">
+                              <select class="form-control select2" style="width: 100%;" name="Proveedor" id="Proveedor">
+                                <?php
+                                for ($p=1; $p <= 5 ; $p++) {
+                                  if ($p==1) {
+                                    $selp="selected";
+                                    $datap='';
+                                  }else{
+                                    $selp="";
+                                    $datap="Provedor ".$p;
+                                  }
+                                    echo "<option ".$selp." value='".$datap."'>".$datap."</option>";
+                                }
+                                 ?>
+                              </select>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Tipo de unidad</label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto">
+                              <select class="form-control select2" style="width: 100%;" name="TipoDeUnidad" id="TipoDeUnidad" >
+                                <option selected value=""></option>
+                                <option value="pick-up">pick-up</option>
+                                <option value="camioneta 0.5ton">camioneta 0.5ton</option>
+                                <option value="Thorton">Thorton</option>
+                                <option value="Contendero 20 pies">Contendero 20 pies</option>
+                                <option value="Contenedor 40 pies">Contenedor 40 pies</option>
+                                <option value="Caja Seca 20 pies">Caja Seca 20 pies</option>
+                                <option value="Caja Seca 40 pies">Caja Seca 40 pies</option>
+                                <option value="Caja Seca 52 pies">Caja Seca 52 pies</option>
+                                <option value="Caja Regrigerada 10 pies">Caja Regrigerada 10 pies</option>
+                                <option value="Caja Regrigerada 20 pies">Caja Regrigerada 20 pies</option>
+                                <option value="Caja Regrigerada 40 pies">Caja Regrigerada 40 pies</option>
+                                <option value="Caja Regrigerada 52 pies">Caja Regrigerada 52 pies</option>
+                              </select>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Tarifa+IVA</label>
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Tarifa+IVA<b> $</b></label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto con formato de dinero">
+                              <input id="TarifaIva" class="form-control col" type="number" name="TarifaIva" placeholder="">
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Maniobras</label>
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Maniobras<b> $</b></label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto con formato de dinero">
+                              <input id="Maniobras" class="form-control col" type="number" name="Maniobras" placeholder="">
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Estadía</label>
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Estadía<b> $</b></label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto con formato de dinero">
+                              <input id="Estadia" class="form-control col" type="number" name="Estadia" placeholder="">
                             </div>
                           </div>
                       </div>
@@ -410,50 +469,50 @@
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nombre de operador</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto">
+                            <input id="NombreOperador" class="form-control col" type="text" name="NombreOperador" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Celular de operador</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name"
+                            <input id="CelularOperador" class="form-control col" type="text" name="CelularOperador"
                            data-inputmask="'mask' : '(999) 999-9999'">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">No economico de tractor</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="text">
+                            <input id="Tractor" class="form-control col" type="text" name="Tractor" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Placas de tractor</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="text">
+                            <input id="PlacasTractor" class="form-control col" type="text" name="PlacasTractor" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">No de remolque 1</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="text">
+                            <input id="NumRemolque1" class="form-control col" type="text" name="NumRemolque1" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Placas de remolque 1</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="text">
+                            <input id="PlacasRemolque1" class="form-control col" type="text" name="PlacasRemolque1" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">No de remolque 2</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="text">
+                            <input id="NumRemolque2" class="form-control col" type="text" name="NumRemolque2" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Placas de remolque 2</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="text">
+                            <input id="PlacasRemolque2" class="form-control col" type="text" name="PlacasRemolque2" placeholder="">
                           </div>
                         </div>
                       </div>
@@ -461,13 +520,19 @@
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Domicilio de carga</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto">
+                            <input id="DomicilioDeCarga" class="form-control col" type="text" name="DomicilioDeCarga" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Cita de carga</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="formato de fecha y hora, con función datepicker)">
+                            <!-- <input id="CitaDeCarga" class="form-control col" type="text" name="CitaDeCarga" placeholder=""> -->
+                            <div class='input-group date' id='myDatepicker1' >
+                                 <input type='text' class="form-control col" id="CitaDeCarga" name="CitaDeCarga"/>
+                                 <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                 </span>
+                             </div>
                           </div>
                         </div>
                       </div>
@@ -475,27 +540,47 @@
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Domicilio de descarga</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="texto">
+                            <input id="DomicilioDescarga" class="form-control col" type="text" name="CelularOperador" placeholder="">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Cita de descarga</label>
                           <div class="col-md-6 col-sm-6 ">
-                            <input id="middle-name" class="form-control col" type="text" name="middle-name" placeholder="formato de fecha y hora, con función datepicker)">
+                            <!-- <input id="CitaDescarga" class="form-control col" type="text" name="CitaDescarga" placeholder=""> -->
+                            <div class='input-group date' id='myDatepicker2' >
+                                 <input type='text' class="form-control col" id="CitaDescarga" name="CitaDescarga"/>
+                                 <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                 </span>
+                             </div>
                           </div>
                         </div>
                       </div>
-                      </form>
-
                     </div>
-                    <!-- End SmartWizard Content -->
+                  <!--  <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-lg-12">
+                        <button class="btn btn-success pull-right" type="button"onclick="validarCampos()" id="registrar"
+                         name="registrar" >Registrar</button>
+                        </div>
+                      </div>
+                    </div>-->
+
+                    </form>
+                    <!-- End SmartWizard Content onclick="validarCampos()"-->
                     <!-- End SmartWizard Content -->
                   </div>
+                  <!-- puede ir algo-->
+
+
+                   <!-- puede ir algo-->
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+
         <!-- /page content -->
 
         <!-- footer content -->
@@ -518,13 +603,46 @@
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- jQuery Smart Wizard -->
-    <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js?<?php echo time();?>"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-
     <!-- jquery.inputmask agregado-->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- toastr agregado-->
+    <script src="../build/toastrJs/toastr.js"></script>
+    <!-- Select2 -->
+    <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
 
+
+
+    <script type="text/javascript">
+       // document.getElementById("iraMenu").addEventListener("click", iraMenu);
+        //var formVal=document.getElementById("registrar").addEventListener("click",validarCampos(event));
+        //setTimeout(function(){Obcon.pasarObjetoAlerta(toastr)}, 1000);
+        $(function() {
+              Obcon.pasarObjetoAlerta(toastr);
+              Obcon.setTimeZone();
+              $('.select2').select2()
+              $('#myDatepicker1').datetimepicker();
+              $('#myDatepicker2').datetimepicker();
+
+
+          });
+        /*  $(function() {
+              alert("hello")
+          var formLog=document.getElementById('FormPlanner');
+          formLog.addEventListener('submit',function(e){
+           e.preventDefault();
+            validarCampos1(formLog)
+          })  alert("hello")
+
+        });*/
+    </script>
   </body>
 </html>
