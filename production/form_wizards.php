@@ -536,7 +536,7 @@
                           </div>
                         </div>
                       </div>
-                      <div id="step-4">
+                      <div id="step-4" style="height:380px;">
                         <div class="form-group row">
                           <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Domicilio de descarga</label>
                           <div class="col-md-6 col-sm-6 ">
@@ -555,6 +555,8 @@
                              </div>
                           </div>
                         </div>
+
+
                       </div>
                     </div>
                   <!--  <div class="container-fluid">

@@ -1,5 +1,5 @@
 <?php
-
+header("Content-Type:application/json");
 class ConnectionDB{
 // Definicion de atributos
 private $host;
@@ -7,6 +7,7 @@ private $user;
 private $password;
 private $database;
 private $conn;
+private $port;
  
 public function __construct(){ 
 //Constructor
@@ -15,23 +16,29 @@ $this->host=HOST;
 $this->user=USER;
 $this->password=PASSWORD;
 $this->database=DATABASE;
-
+$this->port=PORT;
+$this->statConection=true;
 }
 public function CreateConnection(){
 // Metodo que crea y retorna la conexion a la BD.
-$this->conn = new mysqli($this->host, $this->user, $this->password, $this->database);
-
-
+$this->conn = new mysqli($this->host, $this->user, $this->password,$this->database);
  if($this->conn->connect_errno) {
-  die("Error al conectarse a la base de datos: (" . $this->conn->connect_errno.") ". $this->conn->connect_error);
+ 	$this->statConection=false;
 
-	
+ 	$this->messageSql(array("conection DBñ"=>$this->statConection,"Status Code"=>$this->conn->connect_errno,"message"=>$this->conn->connect_error));
+ 	die();
+  //die("Error al conectarse a la base de datos: (" . $this->conn->connect_errno.") ". $this->conn->connect_error);
  }
  else{
- 	echo "";
+ 	//$this->messageSql(array("conection DB"=>$this->statConection));
+
+ 	//echo json_encode(array($this->conn));
  }
 }
-public function conexDatabase(){
+	public function messageSql($param){
+		echo json_encode($param);
+	}
+public function conexion(){
        $NewConn = new ConnectionDB();// se crea instancia a la clase ConnectionMySQL
       $NewConn=$this->CreateConnection();//Se crea una nueva conexion
       return $NewConn;

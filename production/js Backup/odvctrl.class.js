@@ -93,7 +93,7 @@ class odvctrl extends odvctrldb {
            "TimeZone":app["setTimeZone"]
                     }
                   //  var php="<?php echo "mensaje"; ?>";
-                  console.log(JSON.stringify(objH));
+
           //this.enviarPost(objH);
 
         }else{
