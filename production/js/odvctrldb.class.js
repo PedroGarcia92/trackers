@@ -5,7 +5,7 @@ class odvctrldb {
   set setObjalerta(alert){
     this.alerta=alert;
   }
-  
+
 
   enviarPost(objH){
     var url="class/comctrl.php";
@@ -25,6 +25,7 @@ class odvctrldb {
                  // abrirVenta(url)
                 //}, 2000);
               //  this.limpiarFormulario()
+              window.href.reload();
                  break;
                  case false:
                  this.alertPopup("error",data["message"]);
