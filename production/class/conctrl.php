@@ -9,9 +9,9 @@ class control extends model
 	function __construct($timeZone){
 		//$ob = new	model();
 		$this->con=$this->getConection();
-		if ($timeZone!='') {
-			date_default_timezone_set($timeZone);
-		}
+		//if ($timeZone!='') {
+			//date_default_timezone_set($timeZone);
+		//}
 
 	}
 
@@ -21,7 +21,7 @@ class control extends model
 	}
 
 public function enviarDatos($p){
-	unset($p["option"]);
+	//unset($p["option"]);
 	$rsp=$this->datos($p);
 	if (array_key_exists('error', $rsp)) {
 			$this->mensaje(array("success"=>false,"message"=>$rsp["error"]));

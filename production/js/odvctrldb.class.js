@@ -1,12 +1,9 @@
 class odvctrldb {
   constructor() {
-
   }
   set setObjalerta(alert){
     this.alerta=alert;
   }
-
-
   enviarPost(objH){
     var url="class/comctrl.php";
      fetch(url, {
@@ -20,12 +17,10 @@ class odvctrldb {
              switch(data["success"]){
                  case true:
                  this.alertPopup("success",data["message"]);
-               //  var url="https://e2etracking.app/";
-                //setTimeout(function(){
-                 // abrirVenta(url)
-                //}, 2000);
+                setTimeout(function(){
+                // window.location.reload();
+               }, 3000);
               //  this.limpiarFormulario()
-              window.location.reload();
                  break;
                  case false:
                  this.alertPopup("error",data["message"]);
@@ -59,10 +54,23 @@ class odvctrldb {
     document.getElementById('CitaDeCarga').value="";
     document.getElementById('DomicilioDescarga').value="";
     document.getElementById('CitaDescarga').value="";
+    document.getElementById('ReporteTms').value="";
+    document.getElementById('activoCerrado').value="";
+    document.getElementById('siFacturado').value="";
+    document.getElementById('siFacturado').value="";
+    document.getElementById('usoHorarioDesCarga').value="";
+    document.getElementById('usoHorarioCarga').value="";
   }
+  listaImputs(){
+    this.lista= ["Estimacion","Folio",
+    "Cliente","Proveedor","TipoDeUnidad","TarifaIva","Maniobras",
+        "Estadia","NombreOperador","CelularOperador","Tractor",
+        "PlacasTractor","NumRemolque1","PlacasRemolque1","NumRemolque2",
+        "PlacasRemolque2","DomicilioDeCarga","CitaDeCarga","DomicilioDescarga",
+        "CitaDescarga","ReporteTms","activoCerrado","siFacturado","usoHorarioCarga","usoHorarioDesCarga"];
+        return this.lista;
 
-
-
+  }
   alertPopup(typeA,msg){
    Command: this.alerta[typeA](msg,"")
    this.alerta.options = {
@@ -83,31 +91,4 @@ class odvctrldb {
    "hideMethod": "fadeOut"
    }
  }
-  stateInputsFalse(inDt){
-    inDt.Estimacion=false;
-    inDt.Folio=false;
-    inDt.Cliente=false;
-    inDt.Proveedor=false;
-    inDt.TipoDeUnidad=false;
-    inDt.TarifaIva=false;
-    inDt.Maniobras=false;
-    inDt.Estadia=false;
-    inDt.NombreOperador=false;
-    inDt.CelularOperador=false;
-    inDt.Tractor=false;
-    inDt.PlacasTractor=false;
-    inDt.NumRemolque1=false;
-    inDt.PlacasRemolque1=false;
-    inDt.NumRemolque2=false;
-    inDt.PlacasRemolque2=false;
-    inDt.DomicilioDeCarga=false;
-    inDt.CitaDeCarga=false;
-    inDt.DomicilioDescarga=false;
-    inDt.CitaDescarga=false
-}
-
-
-
-
-
 }
